@@ -2,14 +2,19 @@
 
 {% extends "base.html" %} {% block title %}Home{% endblock %} {%block content%}
 <div class="container text-center">
-<div class="row gx-5">
-<img src="https://tse2.mm.bing.net/th/id/OIP.SDCv44P4tUyNDk_uwb6UXQHaFj?w=201&h=180&c=7&r=0&o=5&pid=1.7" class="rounded mx-auto d-block col p-3">
-<h1 class="col p-3">Welcome to the Case Management Systems Helpdesk</h1>
+	<div class="d-md-flex">
+		<div class="col-auto me-auto p-3">
+			<img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
+		</div>
+		<div class="col p-3">
+			<h2 class="p-3">Welcome to the Case Management Systems Helpdesk</h2>
+		</div>
+	</div>
 </div>
-</div>
-<h6 class="pt-4 text-center">"Prior to submission, please ensure the following actions (where appropriate) have taken place: "</h6>
+<h6 class="pt-4 text-start text-primary">Prior to submission, please ensure the following actions (where appropriate) have taken place:</h6>
+
 <div class="text-start p-4">
-	<ul class="nav nav-tabs" role="tablist">
+	<ul class="nav nav-tabs border-bottom border-3" role="tablist">
 		<li class="nav-item" role="presentation">
 			<a class="nav-link active" data-bs-toggle="tab" href="#SuperUser" aria-selected="true" tabindex="1" role="tab">SuperUser</a>
 		</li>
@@ -26,6 +31,7 @@
 			<a class="nav-link" data-bs-toggle="tab" href="#Duplicates" aria-selected="false" tabindex="4" role="tab">Duplicates</a>
 		</li>
 	</ul>
+
 	<div id="myTabContent" class="tab-content">
 		<div class="tab-pane fade show active" id="SuperUser" role="tabpanel">
 			<p>
@@ -50,4 +56,29 @@
 		</div>
 	</div>
 
-{% endblock %}
+	<div class="d-grid gap-2 d-lg-flex justify-content-lg-end">
+		<button class="btn btn-outline-success me-lg-2" type="button" data-bs-target="#ConfirmModal" data-bs-toggle="modal">New Request</button>
+		<button class="btn btn-outline-primary" type="button">Helpdesk Login</button>
+	</div>
+
+	<div class="modal fade" id="ConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="staticBackdropLabel">Please Confirm...</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					You have made contact with a superuser (Lists of Superusers, SPOCs and all relevant Templates can be found in the COPS System Support Hub. They can provide support and answer
+					questions in relation to Case Management Systems. If they cannot deal with the enquiry, they may direct you to your manager or ask you to complete the request form.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Understood</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div>{% endblock %}</div>
+</div>
