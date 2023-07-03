@@ -20,6 +20,7 @@ class Roles(db.Model):
 def build_roles():
     db.session.add(Roles(role ="Admin"))
     db.session.add(Roles(role ="Manager"))
+    db.session.add(Roles(role ="Caseworker"))
     db.session.add(Roles(role ="User"))
     db.session.commit()
     

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %} {% block title %}Helpdesk Login{% endblock %} {%block content%}
+<div class="container text-center">
+	<div class="d-md-flex">
+		<div class="col-auto me-auto p-3">
+			<img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
+		</div>
+		<div class="col p-3">
+			<h3 class="p-3">Please Sign Up to Submit a New Request or Utilise Helpdesk Features</h3>
+		</div>
+	</div>
+	<div>
+		<form method="post">
+			<h4 class="p-2">Sign Up</h4>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<div class="form-floating mb-3">
+					<input type="email" class="form-control" id="email" placeholder="Enter Email Address" />
+					<label for="floatingInput">Email address</label>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div>{% endblock %}</div>
+</div>
