@@ -8,7 +8,7 @@ class Users(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
-    role = db.Column(db.Integer, db.ForeignKey('Roles.id'))
+    role = db.Column(db.Integer, db.ForeignKey('Roles.id'), default=4)
     created_date = db.Column(db.DateTime(timezone=True), default=func.now())
     
 class Roles(db.Model):
@@ -24,7 +24,3 @@ def build_roles():
     db.session.add(Roles(role ="User"))
     db.session.commit()
     
-
-def build_example_user():
-    db.session.add(Users(email="admin@example.com", password="6507321Qq!", first_name="Matt", role = "Admin"))
-    db.session.commit()

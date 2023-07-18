@@ -60,9 +60,15 @@
 		<a href="/new-request">
 		<button class="btn btn-outline-success me-lg-2" type="button" data-bs-target="#ConfirmModal" data-bs-toggle="modal">New Request</button>
 		</a>
+		{% if user.is_authenticated %}
 		<a href="/sign_up">
-		<button class="btn btn-outline-primary" type="button">Helpdesk Login</button>
+		<button hidden class="btn btn-outline-primary" type="button">Helpdesk Sign Up</button>
 		</a>
+		{% else %}
+		<a href="/sign_up">
+			<button class="btn btn-outline-primary" type="button">Helpdesk Sign Up</button>
+			</a>
+		{% endif %}
 	</div>
 
 	<div class="modal fade" id="ConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
