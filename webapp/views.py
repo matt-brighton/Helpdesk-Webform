@@ -8,9 +8,11 @@ from flask import jsonify
 
 views = Blueprint('views', __name__)
 
+
 @ views.route('/')
 def home():
     return render_template('home.html')
+
 
 @ views.route('/sign_up', methods=['GET', 'POST'])
 def sign_up_form():
