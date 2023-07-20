@@ -3,33 +3,33 @@
 {% extends "base.html" %} {% block title %}Helpdesk Login{% endblock %} {%block content%}
 
 <div class="container">
-	<div class="d-md-flex">
-		<div class="col-auto me-auto p-3">
-			<img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
-		</div>
-		<div class="col p-3">
-			<h3 class="p-3">Please Log In to Utilise Helpdesk Features</h3>
-		</div>
-	</div>
-	<form method="post"></form>
+    <div class="d-md-flex">
+        <div class="col-auto me-auto p-3">
+            <img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
+        </div>
+        <div class="col p-3">
+            <h3 class="p-3">Please Log In to Utilise Helpdesk Features</h3>
+        </div>
+    </div>
+    <form method="post"></form>
 </div>
 <form method="post">
-	<h4 class="p-2">Log In</h4>
-	<div class="form-group">
-		<div class="form-floating mb-3">
-			<input type="email" class="form-control" id="login_email" placeholder="Enter Email Address" name="login_email" />
-			<label for="floatingInput">Email address</label>
-		</div>
-	</div>
-	<div class="form-group col">
-		<div class="form-floating mb-3">
-			<input type="password" class="form-control" id="login_password" placeholder="Enter a Password" name="login_password" />
-			<label for="floatingInput">Password</label>
-		</div>
-	</div>
-    <button class="btn btn-outline-success" type="submit">Log In</button>
+    <h4 class="p-2">Log In</h4>
+    <div class="form-group">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="login_email" placeholder="Enter Email Address" name="login_email" />
+            <label for="floatingInput">Email address</label>
+        </div>
+    </div>
+    <div class="form-group col">
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="login_password" placeholder="Enter a Password" name="login_password" />
+            <label for="floatingInput">Password</label>
+        </div>
+    </div>
+    <button class="btn btn-outline-success" type="submit"><i class="bi bi-box-arrow-in-right"></i> Log In</button>
     <a href="/login">
-        <button class="btn btn-outline-danger" type="button">Cancel</button>
+        <button class="btn btn-outline-danger" type="button"><i class="bi bi-trash3"></i> Cancel</button>
     </a>
 </form>
 {% endblock %}

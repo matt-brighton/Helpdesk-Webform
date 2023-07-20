@@ -2,50 +2,50 @@
 
 {% extends "base.html" %} {% block title %}Helpdesk Sign Up{% endblock %} {%block content%}
 <div class="container">
-	<div class="d-md-flex">
-		<div class="col-auto me-auto p-3">
-			<img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
-		</div>
-		<div class="col p-3">
-			<h3 class="p-3">Please Sign Up to Submit a New Request or Utilise Helpdesk Features</h3>
-		</div>
-	</div>
-	<div>
-		<form method="post">
-			<h4 class="p-2">Sign Up</h4>
-			<div class="form-group">
-				<div class="form-floating mb-3">
-					<input type="email" class="form-control" id="email" placeholder="Enter Email Address" name="email"/>
-					<label for="floatingInput">Email address</label>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="form-floating mb-3">
-					<input type="text" class="form-control" id="firstname" placeholder="Enter Your First Name" name="firstname"/>
-					<label for="floatingInput">First Name</label>
-				</div>
-			</div>
-			<div class="row g-2">
-				<div class="form-group col">
-					<div class="form-floating mb-3">
-						<input type="password" class="form-control" id="password" placeholder="Enter a Password" name="password"/>
-						<label for="floatingInput">Password</label>
-					</div>
-				</div>
-				<div class="form-group col">
-					<div class="form-floating mb-3">
-						<input type="password" class="form-control" id="passwordconfirm" placeholder="Confirm Password" name="passwordconfirm"/>
-						<label for="floatingInput">Confirm Password</label>
-					</div>
-				</div>
-			</div>
-			<div>
-				<button class="btn btn-outline-success" type="submit">Submit</button>
-				<a href="/sign_up">
-					<button class="btn btn-outline-danger" type="button">Cancel</button>
-				</a>
-			</div>
-		</form>
-	</div>
-	<div>{% endblock %}</div>
+    <div class="d-md-flex">
+        <div class="col-auto me-auto p-3">
+            <img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
+        </div>
+        <div class="col p-3">
+            <h3 class="p-3">Please Sign Up to Submit a New Request or Utilise Helpdesk Features</h3>
+        </div>
+    </div>
+    <div>
+        <form method="post">
+            <h4 class="p-2">Sign Up</h4>
+            <div class="form-group">
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email Address" name="email" />
+                    <label for="floatingInput">Email address</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="firstname" placeholder="Enter Your First Name" name="firstname" />
+                    <label for="floatingInput">First Name</label>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="form-group col">
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="password" placeholder="Enter a Password" name="password" />
+                        <label for="floatingInput">Password</label>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="passwordconfirm" placeholder="Confirm Password" name="passwordconfirm" />
+                        <label for="floatingInput">Confirm Password</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-outline-success" type="submit"><i class="bi bi-arrow-up-square-fill"></i> Submit</button>
+                <a href="/sign_up">
+                    <button class="btn btn-outline-danger" type="button"><i class="bi bi-trash3"></i> Cancel</button>
+                </a>
+            </div>
+        </form>
+    </div>
+    <div>{% endblock %}</div>
 </div>

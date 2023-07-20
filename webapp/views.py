@@ -14,4 +14,6 @@ def home():
     return render_template('home.html', user=current_user)
 
 
-
+@ views.route('/admin')
+def admin_table():
+    return render_template('admin.html', user=current_user)
