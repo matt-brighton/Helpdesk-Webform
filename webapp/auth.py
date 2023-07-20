@@ -65,7 +65,7 @@ def sign_up_form():
             except:
                 flash("An error occurred, please contact IT if this problem continues")
                 
-            flash('account created!', category='success')
+            flash('Account Created!', category='success')
             login_user(new_user, remember=True)
             return redirect(url_for('views.home'))
         
