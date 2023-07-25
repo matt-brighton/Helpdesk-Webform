@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 {% extends "base.html" %} {% block title %}Home{% endblock %} {%block content%}
+<!-- HEADER -->
 <div class="container text-center">
     <div class="d-md-flex">
         <div class="col-auto me-auto p-3">
@@ -10,26 +11,132 @@
             <h2 class="p-3">Welcome to the Case Management Systems Helpdesk</h2>
         </div>
     </div>
+
+    <!-- TITLE AND ADD NEW USER-->
+</div>
+<div class=" d-flex justify-content-between">
+<div>
+    <h3> Manage Access </h3>
 </div>
 
-<table>
+<div>
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addcasemanager">
+        <i class="bi bi-plus-circle-fill"></i> Add New Case Manager
+    </button>
+</div>
+</div>
+
+<!-- USER TABLE -->
+<table class="table table-hover table-striped table-bordered table-primary">
     <thead>
         <tr>
-            <th>First Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Date Created</th>
+            <th scope ="col">First Name</th>
+            <th scope ="col">Email</th>
+            <th scope ="col">Role</th>
+            <th scope ="col">Date Created</th>
+            <td scope ="col">Action </th>
         </tr>
     </thead>
     <tbody>
         {% for user in data %}
-        <tr>
+        <tr class="table-light">
             <td>{{ user.first_name }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.role }}</td>
             <td>{{ user.created_date }}</td>
+            <td>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modaledit{{user.id}}">
+                    <i class="bi bi-pencil"></i> Edit
+                </button>
+                <a href="/update/{{user.id}}">
+                    <button class="btn btn-danger">
+                        <i class="bi bi-trash3"></i> Delete
+                    </button>
+                </a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+
+
+        
+
+        <!-- TABLE EDIT MODAL -->
+        {%for user in data%}
+        <div class="modal fade" id="modaledit{{user.id}}" tabindex="-1" aria-labelledby="modaledit" role="dialog" aria-idden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Edit User</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <form method="post">
+                            <div class="form-group">
+                                <input type="hidden" name="idEdit" id="idEdit" value="{{user.id}}">
+                                <div class="mb-3">
+                                    <label for="NameEdit" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="NameEdit" name="NameEdit" value="{{user.first_name}}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="EditEmail" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" name="EditEmail" id="EditEmail" aria-describedby="emailHelp" value="{{user.email}}">
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="EditAdminStatus" name="EditAdminStatus">
+                                    <label class="form-check-label" for="EditAdminStatus">Admin?</label>
+                                </div>
+                                
+                            </div>
+                            <button class="btn btn-success" type="submit">Save changes</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+<!-- MODAL NEW USER -->
+<div class="modal fade" id="addcasemanager" tabindex="-1" aria-labelledby="addcasemanager" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="ModalLabel">Add New User</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="POST">
+                <div class="mb-3">
+                    <label for="NameInput" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="NameInput">
+                </div>
+                <div class="mb-3">
+                    <label for="InputEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="TempPassword" class="form-label">Temporary Password</label>
+                    <input type="password" class="form-control" id="TempPassword">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="AdminStatus">
+                    <label class="form-check-label" for="AdminStatus">Admin?</label>
+                </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
