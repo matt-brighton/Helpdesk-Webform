@@ -1,3 +1,7 @@
 {
-    "cSpell.words": ["CMCC", "firstname", "Helpdesk", "jsonify", "passwordconfirm", "sqlalchemy", "Utilise"]
+    "cSpell.words": ["addcasemanager", "CMCC", "firstname", "Helpdesk", "jsonify", "passwordconfirm", "sqlalchemy", "Utilise"],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "python.formatting.provider": "none"
 }
