@@ -3,122 +3,191 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {%block content%}
 <!-- HEADER -->
 <div class="container text-center">
-    <div class="d-md-flex">
-        <div class="col-auto me-auto p-3">
-            <img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
-        </div>
-        <div class="col p-3">
-            <h2 class="p-3">Welcome to the Case Management Systems Helpdesk</h2>
-        </div>
-    </div>
+	<div class="d-md-flex">
+		<div class="col-auto me-auto p-3">
+			<img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
+		</div>
+		<div class="col p-3">
+			<h2 class="p-3">Welcome to the Case Management Systems Helpdesk</h2>
+		</div>
+	</div>
 
-    <!-- TITLE AND ADD NEW USER-->
+	<!-- TITLE AND ADD NEW USER-->
 </div>
 <div class="d-flex justify-content-between">
-    <div>
-        <h3>Manage Access</h3>
-    </div>
+	<div>
+		<h3>Manage Access</h3>
+	</div>
 
-    <div>
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addcasemanager"><i class="bi bi-plus-circle-fill"></i> Add New Case Manager</button>
-    </div>
+	<div>
+		<button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addcasemanager"><i class="bi bi-plus-circle-fill"></i> Add New Case Manager</button>
+	</div>
 </div>
 
 <!-- USER TABLE -->
 <table class="table table-hover table-striped table-bordered table-primary">
-    <thead>
-        <tr>
-            <th scope="col">First Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-            <th scope="col">Date Created</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for user in data %}
-        <tr class="table-light">
-            <td>{{ user.first_name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.role }}</td>
-            <td>{{ user.created_date }}</td>
-            <td>
-                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modaledit{{user.id}}"><i class="bi bi-pencil"></i> Edit</button>
-                <a href="/update/{{user.id}}"> </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
+	<thead>
+		<tr>
+			<th scope="col">First Name</th>
+			<th scope="col">Email</th>
+			<th scope="col">Role</th>
+			<th scope="col">Date Created</th>
+			<th scope="col">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for user in data.items %}
+		<tr class="table-light">
+			<td>{{ user.first_name }}</td>
+			<td>{{ user.email }}</td>
+			<td>{{ user.role.role }}</td>
+			<td>{{ user.created_date }}</td>
+			<td>
+				<button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modaledit{{user.id}}"><i class="bi bi-pencil"></i> Edit</button>
+				<a href="/update/{{user.id}}"> </a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
 </table>
 
+<ul class="pagination">
+	{% if data.has_prev %}
+	<li class="page-item">
+		<a class="page-link" href="{{ url_for('views.admin_table', page_id=data.prev_num, per_page=data.per_page) }}">Previous</a>
+	</li>
+	{% endif %} {% for page in data.iter_pages() %} {% if page %} {% if page == data.page %}
+	<li class="page-item">
+		<a class="page-link active"> <strong>{{ page }}</strong></a>
+	</li>
+	{% else %}
+	<li class="page-item">
+		<a class="page-link" href="{{ url_for('views.admin_table', page_id=page, per_page=data.per_page) }}">{{ page }}</a>
+	</li>
+	{% endif %} {% else %}
+	<li class="page-item">
+		<a class="page-link disabled"> <span>...</span></a>
+	</li>
+	{% endif %} {% endfor %} {% if data.has_next %}
+	<li class="page-item">
+		<a class="page-link" href="{{ url_for('views.admin_table', page_id=data.next_num, per_page=data.per_page) }}">Next</a>
+	</li>
+	{% endif %}
+</ul>
+
+<div>
+	<label for="per-page-select">Items per Page:</label>
+	<select id="per-page-select">
+        {% if data.per_page == 1 %}
+		<option value="1" selected>1</option>
+        {% else %}
+		<option value="1">1</option>
+        {% endif %}
+
+        {% if data.per_page == 2 %}
+		<option value="2" selected>2</option>
+        {% else %}
+		<option value="2">2</option>
+        {% endif %}
+
+        {% if data.per_page == 5 %}
+		<option value="5" selected>5</option>
+        {% else %}
+		<option value="5">5</option>
+        {% endif %}
+
+        {% if data.per_page == 10 %}
+		<option value="10" selected>10</option>
+        {% else %}
+		<option value="10">10</option>
+        {% endif %}
+
+	</select>
+</div>
+
 <!-- TABLE EDIT MODAL -->
-{%for user in data%}
+{%for user in data.items %}
 <div class="modal fade" id="modaledit{{user.id}}" tabindex="-1" aria-labelledby="modaledit" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5">Edit User</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post">
-                    <div class="form-group">
-                        <input type="hidden" name="idEdit" id="idEdit" value="{{user.id}}" />
-                        <div class="mb-3">
-                            <label for="NameEdit" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="NameEdit" name="NameEdit" value="{{user.first_name}}" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="EditEmail" class="form-label">Email address</label>
-                            <input type="email" class="form-control" name="EditEmail" id="EditEmail" aria-describedby="emailHelp" value="{{user.email}}" />
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="EditAdminStatus" name="EditAdminStatus" />
-                            <label class="form-check-label" for="EditAdminStatus">Admin?</label>
-                        </div>
-                    </div>
-                    <button class="btn btn-success" type="submit" name="EditButton" value="EditButton">Save changes</button>
-                </form>
-                <form method="POST" action="{{ url_for('views.delete_user') }}">
-                    <input type="hidden" name="idDelete" id="idDelete" value="{{ user.id }}" />
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')"><i class="bi bi-trash3"></i> Delete</button>
-                </form>
-            </div>
-        </div>
-    </div>
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5">Edit User</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form method="post">
+					<div class="form-group">
+						<input type="hidden" name="idEdit" id="idEdit" value="{{user.id}}" />
+						<div class="mb-3">
+							<label for="NameEdit" class="form-label">Name</label>
+							<input type="text" class="form-control" id="NameEdit" name="NameEdit" value="{{user.first_name}}" />
+						</div>
+						<div class="mb-3">
+							<label for="EditEmail" class="form-label">Email address</label>
+							<input type="email" class="form-control" name="EditEmail" id="EditEmail" aria-describedby="emailHelp" value="{{user.email}}" />
+						</div>
+						<div class="mb-3 form-check">
+							<input type="checkbox" class="form-check-input" id="EditAdminStatus" name="EditAdminStatus" />
+							<label class="form-check-label" for="EditAdminStatus">Admin?</label>
+						</div>
+					</div>
+					<button class="btn btn-success" type="submit" name="EditButton" value="EditButton">Save changes</button>
+				</form>
+				<form method="POST" action="{{ url_for('views.delete_user') }}">
+					<input type="hidden" name="idDelete" id="idDelete" value="{{ user.id }}" />
+					<button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')"><i class="bi bi-trash3"></i> Delete</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 {% endfor %}
 
 <!-- MODAL NEW USER -->
 <div class="modal fade" id="addcasemanager" tabindex="-1" aria-labelledby="addcasemanager" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="ModalLabel">Add New User</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ url_for('auth.new_user') }}" method="POST">
-                    <div class="mb-3">
-                        <label for="NameInput" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="NewName" name="NewName" />
-                    </div>
-                    <div class="mb-3">
-                        <label for="InputEmail" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="NewEmail" name="NewEmail" aria-describedby="emailHelp" />
-                    </div>
-                    <div class="mb-3">
-                        <label for="TempPassword" class="form-label">Temporary Password</label>
-                        <input type="password" class="form-control" id="TempPassword" name="TempPassword" />
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="AdminStatus" />
-                        <label class="form-check-label" for="AdminStatus">Admin?</label>
-                    </div>
-                    <button type="submit" class="btn btn-success">Submit</button>
-                </form>
-            </div>
-        </div>
-    </div>
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="ModalLabel">Add New User</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="{{ url_for('auth.new_user') }}" method="POST">
+					<div class="mb-3">
+						<label for="NameInput" class="form-label">Name</label>
+						<input type="text" class="form-control" id="NewName" name="NewName" />
+					</div>
+					<div class="mb-3">
+						<label for="InputEmail" class="form-label">Email address</label>
+						<input type="email" class="form-control" id="NewEmail" name="NewEmail" aria-describedby="emailHelp" />
+					</div>
+					<div class="mb-3">
+						<label for="TempPassword" class="form-label">Temporary Password</label>
+						<input type="password" class="form-control" id="TempPassword" name="TempPassword" />
+					</div>
+					<div class="mb-3 form-check">
+						<input type="checkbox" class="form-check-input" id="AdminStatus" />
+						<label class="form-check-label" for="AdminStatus">Admin?</label>
+					</div>
+					<button type="submit" class="btn btn-success">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
+
+<script>
+	// Get the <select> element and add an event listener
+	const perPageSelect = document.getElementById("per-page-select");
+	perPageSelect.addEventListener("change", updatePerPageValue);
+
+	// Function to update the URL with the selected per_page value
+	function updatePerPageValue() {
+		const selectedPerPage = perPageSelect.value;
+		const currentUrl = new URL(window.location.href);
+		currentUrl.searchParams.set("per_page", selectedPerPage);
+		window.location.href = currentUrl;
+	}
+</script>
+
 {% endblock %}

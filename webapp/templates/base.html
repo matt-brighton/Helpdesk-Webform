@@ -25,7 +25,7 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav nav-underline">
-						<li class="nav-item"><a class="nav-link ms-2" href="#">New Request</a></li>
+						<li class="nav-item"><a class="nav-link ms-2" href="/new_request">New Request</a></li>
 						<li class="nav-item"><a class="nav-link ms-2" href="#">Track Query</a></li>
 						<li class="nav-item"><a class="nav-link ms-2" href="#">FAQ's</a></li>
 					</ul>
@@ -38,7 +38,7 @@
 						{% endif %}
 					</ul>
 					<ul class="navbar-nav ms-md-end">
-						{% if user.role == 1 %}
+						{% if user.role != null and user.role.id == 1 %}
 						<li class="nav-item">
 							<a class="nav-link ms-2" href="/admin"><i class="bi bi-diagram-3"></i></a>
 						</li>
