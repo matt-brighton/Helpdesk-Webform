@@ -12,23 +12,33 @@
 		</div>
 	</div>
 
-    <table class="table table-hover table-striped table-bordered table-primary">
-        <thead>
-            <tr>
-                <th scope="col">Case ID</th>
-                <th scope="col">Created Date</th>
-                <th scope="col">Created By</th>
-                <th scope="col">System</th>
-                <th scope="col">Query Type</th>
-                <th scope="col">Descriptione</th>
-                <th scope="col">Current Progress</th>
-            </tr>
-        </thead>
+	<table class="table table-hover table-striped table-bordered table-primary">
+		<thead>
+			<tr>
+				<th scope="col">Case ID</th>
+				<th scope="col">Created Date</th>
+				<th scope="col">Created By</th>
+				<th scope="col">System</th>
+				<th scope="col">Query Type</th>
+				<th scope="col">Description</th>
+				<th scope="col">Current Progress</th>
+			</tr>
+		</thead>
 
-        <tbody>
-            {% for user in data.items %}
-
-
+		<tbody>
+			{% for cases in cases %}
+			<tr class="table-light">
+				<td>{{ cases.id }}</td>
+				<td>{{ cases.created_date }}</td>
+				<td>{{ cases.created_by.email }}</td>
+				<td>{{ cases.system.system }}</td>
+				<td>{{ cases.query_type.query_type }}</td>
+				<td>{{ cases.description }}</td>
+				<td>{{ cases.current_progress.current_progress }}</td>
+				{% endfor %}
+			</tr>
+		</tbody>
+	</table>
 </div>
 
-    {% endblock %}
+{% endblock %}
