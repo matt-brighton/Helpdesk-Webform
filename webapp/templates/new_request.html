@@ -3,15 +3,54 @@
 {% extends "base.html" %} {% block title %}Helpdesk Login{% endblock %} {%block content%}
 
 <div class="container">
-    <div class="d-md-flex">
-        <div class="col-auto me-auto p-3">
-            <img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
-        </div>
-        <div class="col p-3">
-            <h3 class="p-3">New Request</h3>
-        </div>
-    </div>
+	<div class="d-md-flex">
+		<div class="col-auto me-auto p-3">
+			<img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
+		</div>
+		<div class="col p-3">
+			<h3 class="p-3">New Request</h3>
+		</div>
+	</div>
+</div>
 
-    <div>{% endblock %}</div>
+<form method="post">
+	<h4 class="p-2">Create a New Request</h4>
 
+	<div class="form-group">
+		<div class="form mb-3">
+			<label for="system" class="form-label mt-2">System</label>
+			<select class="form-select" id="system" name="system">
+				{% for system in systems %}
+				<option value="{{ system.id }}">{{ system.system }}</option>
+				{% endfor %}
+			</select>
+		</div>
+	</div>
 
+	<div class="form-group">
+		<div class="form mb-3">
+			<label for="query_type" class="form-label mt-2">Query Type</label>
+			<select class="form-select" id="query_type" name="query_type">
+				{% for query_type in query_types %}
+				<option value="{{ query_type.id }}">{{ query_type.query_type }}</option>
+				{% endfor %}
+			</select>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="form mb-3">
+			<label for="description" class="form-label mt-2">Description</label>
+			<textarea class="form-control" id="description" name="description" placeholder="Please Enter a Description" rows="5"></textarea>
+		</div>
+	</div>
+
+	<div class="pt-2">
+		<button class="btn btn-outline-success" type="submit"><i class="bi bi-arrow-up-square-fill"></i> Submit</button>
+		<a href="/new_request">
+			<button class="btn btn-outline-danger" type="button"><i class="bi bi-trash3"></i> Cancel</button>
+		</a>
+	</div>
+</form>
+
+<div>{% endblock %}</div>

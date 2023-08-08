@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %} {% block title %}Home{% endblock %} {%block content%}
+<!-- HEADER -->
+<div class="container text-center">
+	<div class="d-md-flex">
+		<div class="col-auto me-auto p-3">
+			<img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
+		</div>
+		<div class="col p-3">
+			<h2 class="p-3">Case Tracker</h2>
+		</div>
+	</div>
+
+    <table class="table table-hover table-striped table-bordered table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Case ID</th>
+                <th scope="col">Created Date</th>
+                <th scope="col">Created By</th>
+                <th scope="col">System</th>
+                <th scope="col">Query Type</th>
+                <th scope="col">Descriptione</th>
+                <th scope="col">Current Progress</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for user in data.items %}
+
+
+</div>
+
+    {% endblock %}

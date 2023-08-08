@@ -20,7 +20,7 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
-    from .models import Users, Roles, Query_Types, Current_Progress, Cases, build_categories, build_current_progress, build_roles
+    from .models import Users, Roles, Query_Types, Current_Progress, Cases, Systems, build_categories, build_current_progress, build_roles, build_systems
 
     with app.app_context():
         db.drop_all()
@@ -28,6 +28,7 @@ def create_app():
         build_roles()
         build_current_progress()
         build_categories()
+        build_systems()
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
