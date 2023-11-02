@@ -65,7 +65,7 @@ def sign_up_form():
                 db.session.commit()
 
             except:
-                flash("An error occurred, please contact IT if this problem continues")
+                flash("An error occurred, please contact IT if this problem continues", category='error')
 
             flash('Account Created!', category='success')
             login_user(new_user, remember=True)
@@ -100,7 +100,7 @@ def new_user():
                 db.session.commit()
 
             except:
-                flash("An error occurred, please contact IT if this problem continues")
+                flash("An error occurred, please contact IT if this problem continues", category='error')
 
             flash('Account Created!', category='success')
             return redirect(url_for('views.home'))

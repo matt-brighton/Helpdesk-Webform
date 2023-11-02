@@ -50,7 +50,7 @@ def post_new_request():
         role_id = current_user.role_id
         
         if len(description) < 10:
-            flash("Please enter a description of more than 10 characters.")  
+            flash("Please enter a description of more than 10 characters.", category='error')  
         
         else:
             new_request = Cases(system_id=system, query_type_id=query_type, description=description, created_by_id=created_by_id, role_id=role_id)
