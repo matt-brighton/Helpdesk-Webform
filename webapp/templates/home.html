@@ -2,100 +2,99 @@
 
 {% extends "base.html" %} {% block title %}Home{% endblock %} {%block content%}
 <div class="container text-center">
-	<div class="d-md-flex">
-		<div class="col-auto me-auto p-3">
-			<img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
-		</div>
-		<div class="col p-3">
-			<h2 class="p-3">Welcome to the Case Management Systems Helpdesk</h2>
-		</div>
-	</div>
+    <div class="d-md-flex">
+        <div class="col-auto me-auto p-3">
+            <img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
+        </div>
+        <div class="col p-3">
+            <h2 class="p-3">Welcome to the Case Management Systems Helpdesk</h2>
+        </div>
+    </div>
 </div>
 <h6 class="pt-4 text-start text-primary">Prior to submission, please ensure the following actions (where appropriate) have taken place:</h6>
 
 <div class="text-start p-4">
-	<ul class="nav nav-tabs border-bottom border-3" role="tablist">
-		<li class="nav-item" role="presentation">
-			<a class="nav-link active" data-bs-toggle="tab" href="#SuperUser" aria-selected="true" tabindex="1" role="tab">SuperUser</a>
-		</li>
-		<li class="nav-item" role="presentation">
-			<a class="nav-link" data-bs-toggle="tab" href="#Guidance" aria-selected="false" tabindex="2" role="tab">Guidance</a>
-		</li>
-		<li class="nav-item" role="presentation">
-			<a class="nav-link" data-bs-toggle="tab" href="#ServiceCentre" aria-selected="false" tabindex="3" role="tab">IT Service Centre</a>
-		</li>
-		<li class="nav-item" role="presentation">
-			<a class="nav-link" data-bs-toggle="tab" href="#RequestForm" aria-selected="false" tabindex="4" role="tab">Request Form</a>
-		</li>
-		<li class="nav-item" role="presentation">
-			<a class="nav-link" data-bs-toggle="tab" href="#Duplicates" aria-selected="false" tabindex="4" role="tab">Duplicates</a>
-		</li>
-	</ul>
+    <ul class="nav nav-tabs border-bottom border-3" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-bs-toggle="tab" href="#SuperUser" aria-selected="true" tabindex="1" role="tab">SuperUser</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="#Guidance" aria-selected="false" tabindex="2" role="tab">Guidance</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="#ServiceCentre" aria-selected="false" tabindex="3" role="tab">IT Service Centre</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="#RequestForm" aria-selected="false" tabindex="4" role="tab">Request Form</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="#Duplicates" aria-selected="false" tabindex="4" role="tab">Duplicates</a>
+        </li>
+    </ul>
 
-	<div id="myTabContent" class="tab-content">
-		<div class="tab-pane fade show active" id="SuperUser" role="tabpanel">
-			<p>
-				You have made contact with a superuser (Lists of Superusers, SPOCs and all relevant Templates can be found in the COPS System Support Hub. They can provide support and answer questions
-				in relation to Case Management Systems. If they cannot deal with the enquiry, they may direct you to your manager or ask you to complete the request form.
-			</p>
-		</div>
-		<div class="tab-pane fade" id="Guidance" role="tabpanel">
-			<p>You have checked relevant System Guidance and recent Superuser updates/Comms in thev COPS System Support Hub.</p>
-		</div>
-		<div class="tab-pane fade" id="ServiceCentre" role="tabpanel">
-			<p>If the problem is a system error, you will need to report it to the IT Service Centre. 03003 300 003.</p>
-		</div>
-		<div class="tab-pane fade" id="RequestForm" role="tabpanel">
-			<p>
-				If the other steps have been actioned and you are unable to resolve the problem and it is not a system error, then you will need to liaise with your Superuser/Manager or Business SPoC
-				(dependant on submission type) to complete the request form.
-			</p>
-		</div>
-		<div class="tab-pane fade" id="Duplicates" role="tabpanel">
-			<p>If you do decide to contact us, please only include one problem or request per form.</p>
-		</div>
-	</div>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade show active" id="SuperUser" role="tabpanel">
+            <p>
+                You have made contact with a superuser (Lists of Superusers, SPOCs and all relevant Templates can be found in the COPS System Support Hub. They can provide support and answer questions
+                in relation to Case Management Systems. If they cannot deal with the enquiry, they may direct you to your manager or ask you to complete the request form.
+            </p>
+        </div>
+        <div class="tab-pane fade" id="Guidance" role="tabpanel">
+            <p>You have checked relevant System Guidance and recent Superuser updates/Comms in the COPS System Support Hub.</p>
+        </div>
+        <div class="tab-pane fade" id="ServiceCentre" role="tabpanel">
+            <p>If the problem is a system error, you will need to report it to the IT Service Centre. 03003 300 003.</p>
+        </div>
+        <div class="tab-pane fade" id="RequestForm" role="tabpanel">
+            <p>
+                If the other steps have been actioned and you are unable to resolve the problem and it is not a system error, then you will need to liaise with your Superuser/Manager or Business SPoC
+                (dependant on submission type) to complete the request form.
+            </p>
+        </div>
+        <div class="tab-pane fade" id="Duplicates" role="tabpanel">
+            <p>If you do decide to contact us, please only include one problem or request per form.</p>
+        </div>
+    </div>
 
-	<div class="d-grid gap-2 d-lg-flex justify-content-lg-end">
+    <div class="d-grid gap-2 d-lg-flex justify-content-lg-end">
+        <button class="btn btn-outline-success me-lg-2" type="button" data-bs-target="#ConfirmModal" data-bs-toggle="modal">New Request</button>
 
-		<button class="btn btn-outline-success me-lg-2" type="button" data-bs-target="#ConfirmModal" data-bs-toggle="modal">New Request</button>
+        {% if user.is_authenticated %}
+        <a href="/sign_up">
+            <button hidden class="btn btn-outline-primary" type="button">Helpdesk Sign Up</button>
+        </a>
+        {% else %}
+        <a href="/sign_up">
+            <button class="btn btn-outline-primary" type="button">Helpdesk Sign Up</button>
+        </a>
+        {% endif %}
+    </div>
 
-		{% if user.is_authenticated %}
-		<a href="/sign_up">
-		<button hidden class="btn btn-outline-primary" type="button">Helpdesk Sign Up</button>
-		</a>
-		{% else %}
-		<a href="/sign_up">
-			<button class="btn btn-outline-primary" type="button">Helpdesk Sign Up</button>
-			</a>
-		{% endif %}
-	</div>
+    <div class="modal fade" id="ConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Please Confirm</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    1. You have made contact with a superuser (Lists of Superusers, SPOCs and all relevant Templates can be found in the COPS System Support Hub. They can provide support and answer
+                    questions in relation to Case Management Systems. If they cannot deal with the enquiry, they may direct you to your manager or ask you to complete the request form.<br /><br />
+                    2. You have checked relevant System Guidance and recent Superuser updates/Comms in the COPS System Support Hub.<br /><br />
+                    3. If the problem is a system error, you will need to report it to the IT Service Centre. 03003 300 003.<br /><br />
+                    4. If the other steps have been actioned and you are unable to resolve the problem and it is not a system error, then you will need to liaise with your Superuser/Manager or
+                    Business SPoC (dependant on submission type) to complete the request form.<br /><br />
+                    5. If you do decide to contact us, please only include one problem or request per form.<br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="/new_request">
+                        <button type="button" class="btn btn-primary">Understood</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<div class="modal fade" id="ConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="staticBackdropLabel">Please Confirm</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					1. You have made contact with a superuser (Lists of Superusers, SPOCs and all relevant Templates can be found in the COPS System Support Hub. They can provide support and answer
-					questions in relation to Case Management Systems. If they cannot deal with the enquiry, they may direct you to your manager or ask you to complete the request form.<br><br>
-					2. You have checked relevant System Guidance and recent Superuser updates/Comms in thev COPS System Support Hub.<br><br>
-					3. If the problem is a system error, you will need to report it to the IT Service Centre. 03003 300 003.<br><br>
-					4. If the other steps have been actioned and you are unable to resolve the problem and it is not a system error, then you will need to liaise with your Superuser/Manager or Business SPoC
-					(dependant on submission type) to complete the request form.<br><br>
-					5. If you do decide to contact us, please only include one problem or request per form.<br>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<a href="/new_request">
-					<button type="button" class="btn btn-primary">Understood</button>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div>{% endblock %}</div>
+    <div>{% endblock %}</div>
 </div>

@@ -12,20 +12,26 @@
     </div>
     <div>
         <form method="post">
-            
+            <!--HEADER-->
             <h4 class="p-2">Sign Up</h4>
+
+            <!--EMAIL INPUT-->
             <div class="form-group">
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="email" placeholder="Enter Email Address" name="email" />
                     <label for="floatingInput">Email address</label>
                 </div>
             </div>
+
+            <!--NAME INPUT-->
             <div class="form-group">
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="firstname" placeholder="Enter Your First Name" name="firstname" />
                     <label for="floatingInput">First Name</label>
                 </div>
             </div>
+
+            <!--PASSWORD INPUT-->
             <div class="row g-2">
                 <div class="form-group col">
                     <div class="form-floating mb-3">
@@ -33,6 +39,8 @@
                         <label for="floatingInput">Password</label>
                     </div>
                 </div>
+
+                <!--CONFIRM PASSWORD INPUT-->
                 <div class="form-group col">
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control" id="passwordconfirm" placeholder="Confirm Password" name="passwordconfirm" />
@@ -41,7 +49,10 @@
                 </div>
             </div>
             <div>
+                <!--SUBMIT BUTTON-->
                 <button class="btn btn-outline-success" type="submit"><i class="bi bi-arrow-up-square-fill"></i> Submit</button>
+
+                <!--CANCEL BUTTON-->
                 <a href="/sign_up">
                     <button class="btn btn-outline-danger" type="button"><i class="bi bi-trash3"></i> Cancel</button>
                 </a>
