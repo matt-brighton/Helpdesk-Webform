@@ -4,6 +4,13 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
 
+class Notes(db.Model):
+    __tablename__ = 'Notes'
+    id = db.Column(db.Integer, primary_key=True)
+    note = db.Column(db.String(10000))
+    date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+    user_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
+
 class Cases(db.Model):
     __tablename__ = 'Cases'
     id = db.Column(db.Integer, primary_key=True)
@@ -33,6 +40,7 @@ class Users(db.Model, UserMixin):
     created_date = db.Column(db.DateTime(timezone=True), default=func.now())
     created_cases = db.relationship("Cases", foreign_keys=[Cases.created_by_id])
     assigned_cases = db.relationship("Cases", foreign_keys=[Cases.assigned_to_id])
+    user_notes = db.relationship('Notes')
 
 class Query_Types(db.Model):
     __tablename__ = 'Query_Types'
