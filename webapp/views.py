@@ -80,4 +80,20 @@ def post_new_request():
 @ views.route('/admin', methods=['POST'])
 def update():
     if request.method == 'POST':
-       
+        data = Users.query.get(request.form.get('idEdit'))
+        data.first_name = request.form['NameEdit']
+        data.email = request.form['EditEmail']
+        db.session.commit()
+        message = f"{data.first_name} Updated"
+        flash(message)
+
+    return redirect('/admin')
+
+#Delete User
+@ views.route('/delete_user', methods=['POST'])
+def delete_user():
+    if request.method == 'POST':  
+        data = Users.query.get(request.form.get('idDelete'))
+        db.session.delete(data)
+        db.session.commit()
+    return redirect('/')
