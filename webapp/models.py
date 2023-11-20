@@ -89,4 +89,3 @@ def build_systems():
     db.session.add(Systems(system='ETMP'))
     db.session.add(Systems(system='RHS'))
     db.session.commit()
-    

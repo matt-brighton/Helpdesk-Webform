@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
-from .models import Users, Roles, Systems, Query_Types, Cases
+from .models import Users, Roles, Systems, Query_Types, Cases, Notes
 from . import db
 import json
 from flask import jsonify
@@ -29,14 +29,27 @@ def new_request():
     query_types=Query_Types.query.all()
     return render_template('new_request.html', user=current_user, systems=systems, query_types=query_types)
 
+# Case Tracker
 @views.route('/case_tracker', methods=['GET'])
 @login_required
 def case_tracker():
     cases=Cases.query.all()
     return render_template('case_tracker.html', cases=cases, user=current_user)
 
-
-
+# New Note
+@views.route('/new_note', methods=['POST'])
+@login_required
+def new_note():
+    if request.method == 'POST':
+        note = request.form.get('note')
+        if len(note) < 1:
+            flash('Note is required', category='error')
+        else:
+            new_note = Notes(data=note, user_id=current_user.id)
+            db.session.add(new_note)
+            db.session.commit()
+            flash('Note Added', category='success')
+    return render_template('case_tracker.html', cases=cases, user=current_user)
 
 # New Request
 @ views.route('/new_request', methods=['POST'])
@@ -50,38 +63,21 @@ def post_new_request():
         role_id = current_user.role_id
         
         if len(description) < 10:
-            flash("Please enter a description of more than 10 characters.", category='error')  
+            flash("Please enter a description of more than 10 characters.", category='error') 
+            return redirect(url_for('views.new_request'))
+            
         
         else:
             new_request = Cases(system_id=system, query_type_id=query_type, description=description, created_by_id=created_by_id, role_id=role_id)
         
-        db.session.add(new_request)
-        db.session.commit()
+            db.session.add(new_request)
+            db.session.commit()
+            flash('Case Created Successfully', category='success')
     
     return redirect(url_for('views.home'))
-        
-    
-
+  
 # Edit User
 @ views.route('/admin', methods=['POST'])
 def update():
     if request.method == 'POST':
-        data = Users.query.get(request.form.get('idEdit'))
-        data.first_name = request.form['NameEdit']
-        data.email = request.form['EditEmail']
-        db.session.commit()
-        message = f"{data.first_name} Updated"
-        flash(message)
-
-    return redirect('/admin')
-
-#Delete User
-@ views.route('/delete_user', methods=['POST'])
-def delete_user():
-    if request.method == 'POST':  
-        data = Users.query.get(request.form.get('idDelete'))
-        db.session.delete(data)
-        db.session.commit()
-    return redirect('/')
-
-
+       

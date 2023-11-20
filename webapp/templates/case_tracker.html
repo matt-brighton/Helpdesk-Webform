@@ -3,42 +3,66 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {%block content%}
 <!-- HEADER -->
 <div class="container text-center">
-	<div class="d-md-flex">
-		<div class="col-auto me-auto p-3">
-			<img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
-		</div>
-		<div class="col p-3">
-			<h2 class="p-3">Case Tracker</h2>
-		</div>
-	</div>
+    <div class="d-md-flex">
+        <div class="col-auto me-auto p-3">
+            <img src="{{url_for('static', filename='HMRC-Logo.jpg')}}" width="120" />
+        </div>
+        <div class="col p-3">
+            <h2 class="p-3">Case Tracker</h2>
+        </div>
+    </div>
 
-	<table class="table table-hover table-striped table-bordered table-primary">
-		<thead>
-			<tr>
-				<th scope="col">Case ID</th>
-				<th scope="col">Created Date</th>
-				<th scope="col">Created By</th>
-				<th scope="col">System</th>
-				<th scope="col">Query Type</th>
-				<th scope="col">Description</th>
-				<th scope="col">Current Progress</th>
-			</tr>
-		</thead>
+    <div>
+        <h3 align="center" class="pt-4">To Do List</h3>
+        <ul class="list-group list-group-flush" id="notes">
+            {% for note in user.notes %}
+            <li class="list-group-item">
+                {{ note.data }}
+                <button type="button" class="close btn btn-danger" onClick="deleteNote({{ note.id }})">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+        <form method="POST">
+            <textarea name="note" id="note" class="form-control" placeholder="Put your tasks here!"></textarea>
+            <div align="end">
+                <a href="/new_request">
+                    <button type="submit" class="btn btn-warning text-dark">Add a Note</button>
+                </a>
+            </div>
+        </form>
 
-		<tbody>
-			{% for cases in cases %}
-			<tr class="table-light">
-				<td>{{ cases.id }}</td>
-				<td>{{ cases.created_date }}</td>
-				<td>{{ cases.created_by.email }}</td>
-				<td>{{ cases.system.system }}</td>
-				<td>{{ cases.query_type.query_type }}</td>
-				<td>{{ cases.description }}</td>
-				<td>{{ cases.current_progress.current_progress }}</td>
-				{% endfor %}
-			</tr>
-		</tbody>
-	</table>
+        <table class="table table-hover table-striped table-bordered table-primary">
+            <thead>
+                <tr>
+                    <th scope="col">Case ID</th>
+                    <th scope="col">Created Date</th>
+                    <th scope="col">Created By</th>
+                    <th scope="col">System</th>
+                    <th scope="col">Query Type</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Current Progress</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for cases in cases %}
+                <tr class="table-light">
+                    <td>{{ cases.id }}</td>
+                    <td>{{ cases.created_date }}</td>
+                    <td>{{ cases.created_by.email }}</td>
+                    <td>{{ cases.system.system }}</td>
+                    <td>{{ cases.query_type.query_type }}</td>
+                    <td>{{ cases.description }}</td>
+                    <td>{{ cases.current_progress.current_progress }}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% endblock %}
 </div>
-
-{% endblock %}
