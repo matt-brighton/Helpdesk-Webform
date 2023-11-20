@@ -45,11 +45,11 @@ def new_note():
         if len(note) < 1:
             flash('Note is required', category='error')
         else:
-            new_note = Notes(data=note, user_id=current_user.id)
+            new_note = Notes(note=note, user_id=current_user.id)
             db.session.add(new_note)
             db.session.commit()
             flash('Note Added', category='success')
-    return render_template('case_tracker.html', cases=cases, user=current_user)
+    return render_template('case_tracker.html', user=current_user)
 
 # New Request
 @ views.route('/new_request', methods=['POST'])
