@@ -14,20 +14,16 @@
 
 	<h4 align="center" class="pt-4">To Do List</h4>
 	<div class="container">
-		<div class="row">
-			<ul class="list-group" id="notes">
-				{% for note in user.user_notes %}
-				<div class="col">
-					<li class="list-group-item">{{ note.note }}</li>
-				</div>
-				<div class="col">
-					<button type="button" class="close btn btn-danger" onClick="deleteNote({{ note.id }})">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				{% endfor %}
-			</ul>
-		</div>
+		<ul class="list-group" id="notes">
+			{% for note in user.user_notes %}
+			<li class="list-group-item">
+				{{ note.note }}
+				<button type="button" class="close btn btn-danger float-end" onClick="deleteNote({{ note.id }})">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</li>
+			{% endfor %}
+		</ul>
 	</div>
 
 	<div class="mt-3">
